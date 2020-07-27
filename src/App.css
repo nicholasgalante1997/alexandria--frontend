@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+.book {
+  width: 190px;
+  padding: 25px;
+  border-style: ridge; 
+  justify-content: space-evenly;
+  
+}
+
+.bookshelf {
+  background: linear-gradient(to right, #de6262, #ffb88c);
+  font-family: cursive;
+}
+
+.nav-bar {
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
+   
+}
+
+.search-bar {
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
+  color: white;
+  font-family: cursive;
+}
+
+.nav-item {
+  float: right;
+  justify-content: space-around;
+  color: white; 
+  font-family: cursive;
+  align-content: space-between;
+}
+
+.log-in-page{
+  align-content: center;
+  justify-content: space-between;
+  background: linear-gradient(to right, #de6262, #ffb88c);
+}

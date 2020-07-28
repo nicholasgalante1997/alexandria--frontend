@@ -5,7 +5,7 @@ import NavBar from './Components/NavBar'
 import BookStoreContainer from './Components/BookStoreContainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import SearchBar from './Components/SearchBar';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import LogInForm from './Components/LogInForm';
 
 class App extends Component {
@@ -60,17 +60,20 @@ class App extends Component {
   render() { 
     console.log(this.state.currentUser)
     return ( 
-      <Router>
-      <div>
+     <>
         <NavBar/>
         <SearchBar handleChange={this.handleChange} filter={this.state.filter} />
-        <Route exact path='/bookstore' render={(routerProps) => 
+        <Switch>
+          {/* <Route exact path='/books/isbn' render={(routerProps) => } */}
+          <Route exact path='/bookstore' render={(routerProps) => 
           <BookStoreContainer books={this.filterFunc()} {...routerProps}/>}/>
-        <Route exact path='/' render={(routerProps) => 
+          <Route exact path='/login' render={(routerProps) => 
           <LogInForm {...routerProps} setCurrentUser={this.setCurrentUser}/>}/>
-        
-      </div>
-      </Router>
+          {/* <Route exact path='/users/:id' render={(routerProps) => "" /> */}
+
+        </Switch> 
+      </>
+    
      );
   }
 }

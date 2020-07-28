@@ -3,9 +3,15 @@ import Card from 'react-bootstrap/Card';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+
+const resetForm = {
+    username: "",
+    password: "",
+    confirmation: ""
+}
+
 class LogInForm extends Component {
     state = { 
-        newUser: false,
         username: "",
         password: "",
         confirmation: ""
@@ -33,8 +39,9 @@ class LogInForm extends Component {
             })
             })
             .then(resp => resp.json())
-            .then(user => console.log(user))
-            
+            .then(user => {this.props.setCurrentUser(user)
+                this.setState(resetForm)
+                this.props.history.push('/bookstore')})       
      }
 
      handleReturningUserSubmit = (event) => {

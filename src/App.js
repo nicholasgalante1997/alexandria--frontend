@@ -17,7 +17,8 @@ class App extends Component {
     reduxBooks: [],
     books: [],
     filter: "",
-    currentUser: {}
+    currentUser: {},
+    usersArray: []
    }
 
    setCurrentUser = (user) => {
@@ -37,9 +38,8 @@ class App extends Component {
       return [...this.state.books].filter((book) => book.title.toLowerCase().includes(this.state.filter.toLowerCase()))
     }
 
-
-   componentDidMount(){
-     fetch('http://localhost:3001/api/v1/books')
+    fetchBooks = () => {
+      fetch('http://localhost:3001/api/v1/books')
      .then(r => r.json())
      .then(books => {
        this.setState({
@@ -53,12 +53,24 @@ class App extends Component {
          currentUser: {}
        })
      })
+    }
+
+    fetchUsers = () => {
+      fetch("http://localhost:3001/api/v1/users")
+      .then(r => r.json())
+      .then(users => this.setState({
+        usersArray: users
+      }))
+    }
+
+   componentDidMount(){
+     this.fetchBooks()
+     this.fetchUsers()
    }
 
-   
 
   render() { 
-    console.log(this.state.currentUser)
+    console.log(this.state.currentUser, this.state.usersArray)
     return ( 
      <>
         <NavBar/>
@@ -66,9 +78,9 @@ class App extends Component {
         <Switch>
           {/* <Route exact path='/books/isbn' render={(routerProps) => } */}
           <Route exact path='/bookstore' render={(routerProps) => 
-          <BookStoreContainer books={this.filterFunc()} {...routerProps}/>}/>
+          <BookStoreContainer books={this.filterFunc()} {...routerProps} currentUser={this.state.currentUser}/>}/>
           <Route exact path='/login' render={(routerProps) => 
-          <LogInForm {...routerProps} setCurrentUser={this.setCurrentUser}/>}/>
+          <LogInForm {...routerProps} setCurrentUser={this.setCurrentUser} users={this.state.usersArray}/>}/>
           {/* <Route exact path='/users/:id' render={(routerProps) => "" /> */}
 
         </Switch> 

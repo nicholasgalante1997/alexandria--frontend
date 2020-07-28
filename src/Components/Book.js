@@ -31,17 +31,38 @@ class Book extends Component {
             }
         }
         ),
-        console.log(this.state.moreInfo)
+        // console.log(this.state.moreInfo)
         )
         
         }
     }
 
     // componentDidMount(){
-    //     fetch(`https://api.itbook.store/1.0/books/9781617294136`)
-    //     .then(r => r.json())
-    //     .then(book => console.log(book))
-    // }
+    //     console.log(this.props)
+    //  }
+
+    addToLibrary = () => {
+        if (this.props.currentUser === {}) {
+            alert("Must Be Logged In to Add A Book To Your Library")
+        } else {
+            fetch("http://localhost:3001/api/v1/user_books", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                   
+                      user_id: this.props.currentUser.id,
+                      been_read: false,
+                      isbn13: this.props.isbn13
+                    
+                })
+            })
+            .then(r => r.json())
+            .then(user_book => alert(`${this.props.title} has been added to your library!`))
+        }
+    }
 
     renderFront = () => {
       return (<Col md={3}>
@@ -52,13 +73,23 @@ class Book extends Component {
     }
 
     renderBack = () => {
-        return ( 
-            <Col md={3}>
-            <strong>{this.state.moreInfo.title}</strong>
-            <small>{this.state.moreInfo.author}</small>
-            <small>{this.state.moreInfo.desc}</small>
-            <button onClick={this.handleClick}name='info'>LessInfo</button>
-        </Col>)
+        return (
+            
+            <Col md={3} >
+                
+                <img src={this.props.image}/>
+                <div className="book">
+                <h3>{this.state.moreInfo.title}</h3>
+                <p>{this.state.moreInfo.authors}</p>           
+                <small>{this.state.moreInfo.desc}</small>
+                <br></br>
+                <button onClick={this.handleClick} name='info'>LessInfo</button>
+                <button onClick={this.addToLibrary} name="add-to-lib">Add To My Library</button>
+                </div>
+                
+            
+             </Col>
+         )
     }
     
     render () {

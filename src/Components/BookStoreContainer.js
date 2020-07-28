@@ -8,14 +8,15 @@ import Col from 'react-bootstrap/Col'
 
 class BookStoreContainer extends Component {
     state = { 
-    
     }
+
     render() { 
+        console.log(this.props.currentUser)
         return ( 
             
                 <Container fluid className="bookshelf">
                     <Row>
-                        {this.props.books.map((book) => <Book {...book} onClick={console.log()}/>)}
+                        {this.props.books.map((book) => <Book {...book} currentUser={this.props.currentUser}/>)}
                 </Row>
                </Container>
        

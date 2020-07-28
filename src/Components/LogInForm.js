@@ -14,7 +14,10 @@ class LogInForm extends Component {
     state = { 
         username: "",
         password: "",
-        confirmation: ""
+        confirmation: "",
+        currentUser: "",
+        retUsername: "",
+        retPassword: ""
      }
 
      handleChange = (event) => 
@@ -45,8 +48,15 @@ class LogInForm extends Component {
      }
 
      handleReturningUserSubmit = (event) => {
-         event.preventDefault()
-
+        event.preventDefault()
+        const user = [...this.props.users].find(user => (user.username === this.state.retUsername && user.password === this.state.retPassword))
+        if (user === undefined) {
+            alert('incorrect login guy!')
+        } else {
+            this.props.setCurrentUser(user)
+            this.setState(resetForm)
+            this.props.history.push('/bookstore')
+        }
      }
 
     //  renderLogin = () => {
@@ -100,8 +110,8 @@ class LogInForm extends Component {
                             <Card.Title>Returning Reader? Log In!</Card.Title>
                             <Card.Body>
                             <form className='return-form' onSubmit={this.handleReturningUserSubmit}>
-                            <input name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange}/>
-                            <input name="password" placeholder="Password" type="password" value={this.state.password} onChange={this.handleChange}/>
+                            <input name="retUsername" placeholder="Username" value={this.state.retUsername} onChange={this.handleChange}/>
+                            <input name="retPassword" placeholder="Password" type="password" value={this.state.retPassword} onChange={this.handleChange}/>
                             <button type="submit">Submit</button>
                             </form>
                             </Card.Body>

@@ -10,8 +10,8 @@ const NavBar = (props) => {
                 <Navbar.Brand><h2 className="nav-item">Alexandria</h2></Navbar.Brand>
                     <Nav>
                     <Nav.Link href='/bookstore'> <p className="nav-item">GetBooks</p></Nav.Link>
-                    <Nav.Link href="/"> <p className="nav-item">SignIn/SignUp</p></Nav.Link>
-                    <Nav.Link href="/userpage"><p className="nav-item">My Page</p></Nav.Link>
+                    <Nav.Link href="/login"> <p className="nav-item">SignIn/SignUp</p></Nav.Link>
+                    <Nav.Link href="/users/:id"><p className="nav-item">My Page</p></Nav.Link>
                     </Nav>
             </Navbar>
         </div>

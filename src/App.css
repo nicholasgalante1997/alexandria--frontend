@@ -47,6 +47,7 @@
 .bookshelf {
   background: linear-gradient(to right, #de6262, #ffb88c);
   font-family: cursive;
+  color: white;
 }
 
 .nav-bar {

@@ -11,6 +11,7 @@ class MyPageContainer extends Component {
 
     componentDidMount(){
         this.getUserBooks()
+        console.log(this.props.currentUser.user_books)
     }
 
     fetchIndBook = (isbn) => {
@@ -24,7 +25,7 @@ class MyPageContainer extends Component {
     }
 
     getUserBooks = () => {
-      const isbnArray = [...this.props.currentUser.user_books].map(user_book => user_book.isbn13)
+      const isbnArray = [...this.props.userBooks].map(user_book => user_book.isbn13)
       isbnArray.map(isbn => this.fetchIndBook(isbn))
     }
 
@@ -37,7 +38,7 @@ class MyPageContainer extends Component {
                         <h2>{this.props.currentUser.username}</h2> 
                          <strong>Book List</strong>
                          <br></br>
-                         <Row>{this.state.myBookArray.map(book => <MyBook {...book} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>)}</Row>
+                         <Row>{this.state.myBookArray.map(book => <MyBook onDelete={this.props.onDelete} onFav={this.props.onFav} {...book} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn} currentUserBooks={this.props.userBooks} history={this.props.history}/>)}</Row>
                          
                     </Container>
                          

@@ -14,6 +14,10 @@ class MyBook extends Component {
          this.setMyUserBook()
      }
 
+    //  componentDidUpdate(prevProps ,prevState){
+    //     this.setMyUserBook()
+    //  }
+
      handleClick = () => {
         
         if (this.state.backSide) {
@@ -49,7 +53,7 @@ class MyBook extends Component {
     }
 
     findMyBook = () => {
-      return [...this.props.currentUser.user_books].find(user_book => (user_book.isbn13 === this.props.isbn13))
+      return [...this.props.currentUserBooks].find(user_book => (user_book.isbn13 === this.props.isbn13))
     }
 
     setMyUserBook = () => {
@@ -72,13 +76,32 @@ class MyBook extends Component {
             })
         })
         .then(r => r.json())
-        .then(user_book => this.setState(prevState => {
+        .then(user_book => {
+            this.setState(prevState => {
             return {
                 myUserBook: user_book,
                 favorite: !prevState.favorite
             }
-        }));
+        })
+        this.props.onFav()
+    });
         
+    }
+
+    removeFromLibrary = () => {
+        fetch(`http://localhost:3001/api/v1/user_books/${this.state.myUserBook.id}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        .then(r => r.json())
+        .then(empty => alert('item has been removed from your library'))
+        this.props.onDelete()
+        this.setState({
+
+        })
     }
 
     renderBack = () => {
@@ -97,6 +120,7 @@ class MyBook extends Component {
                 <br></br>
                 <button onClick={this.handleClick} name='info'>LessInfo</button>
                 { this.state.favorite ? <button onClick={this.toggleFavorite}>UnFavorite 💔</button> : <button onClick={this.toggleFavorite}>Favorite 💖</button> }
+                {/* <button onClick={this.removeFromLibrary}>Remove me from library :(</button> */}
                 </div>
                 
             

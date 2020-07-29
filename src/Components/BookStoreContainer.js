@@ -10,6 +10,10 @@ class BookStoreContainer extends Component {
     state = { 
     }
 
+    componentDidMount(){
+        this.props.fetchUsers()
+    }
+
     render() { 
         console.log(this.props.currentUser)
         return ( 
@@ -18,7 +22,7 @@ class BookStoreContainer extends Component {
                     <br></br>
                     <h2 className="bookshelf-title">Welcome to Your Online Bookstore!</h2>
                     <Row>
-                        {this.props.books.map((book) => <Book {...book} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>)}
+                        {this.props.books.map((book) => <Book addBook={this.props.addBook} fetchUB={this.props.fetchUB} {...book} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>)}
                 </Row>
                </Container>
        

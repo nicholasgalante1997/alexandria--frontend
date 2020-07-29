@@ -60,9 +60,11 @@ class Book extends Component {
                 })
             })
             .then(r => r.json())
-            .then(user_book => alert(`${this.props.title} has been added to your library!`))
-        }
-    }
+            .then(user_book => {alert(`${this.props.title} has been added to your library!`)
+            this.props.addBook(user_book)
+            this.props.fetchUB()
+        })
+    }}
 
     renderFront = () => {
       return (<Col md={3}>

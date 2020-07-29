@@ -15,8 +15,10 @@ class BookStoreContainer extends Component {
         return ( 
             
                 <Container fluid className="bookshelf">
+                    <br></br>
+                    <h2 className="bookshelf-title">Welcome to Your Online Bookstore!</h2>
                     <Row>
-                        {this.props.books.map((book) => <Book {...book} currentUser={this.props.currentUser}/>)}
+                        {this.props.books.map((book) => <Book {...book} currentUser={this.props.currentUser} loggedIn={this.props.loggedIn}/>)}
                 </Row>
                </Container>
        

@@ -46,26 +46,31 @@
 
 .bookshelf {
   background: linear-gradient(to right, #de6262, #ffb88c);
-  font-family: cursive;
+  font-family: Courier, monospace;
+  font-style: italic;
   color: white;
 }
 
 .nav-bar {
-  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
+  background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%);
+  justify-content: space-around;
    
 }
 
 .search-bar {
-  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
   color: white;
-  font-family: cursive;
+  font-family: Courier, monospace;
+  font-style: italic;
+  padding-left: 100px;
+  
+
 }
 
 .nav-item {
-  float: right;
-  justify-content: space-around;
+  padding: 25px;
   color: white; 
-  font-family: cursive;
+  font-family: Courier, monospace;
+  font-style: italic;
   align-content: space-between;
 }
 
@@ -73,4 +78,26 @@
   align-content: center;
   justify-content: space-between;
   background: linear-gradient(to right, #de6262, #ffb88c);
+}
+
+.footer {
+  background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
+  color: white;
+  font-family: Courier, monospace;
+  font-style: italic;
+  font-size: smaller;
+  height: 20px
+}
+
+.book-backside {
+  width: 190px;
+  padding: 25px;
+  border-style: ridge; 
+  justify-content: space-evenly;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%);
+}
+
+.bookshelf-title {
+  font-weight: 700;
+  border-color:whitesmoke ;
 }

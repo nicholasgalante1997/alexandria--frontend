@@ -27,6 +27,7 @@ class LogInForm extends Component {
 
      handleNewUserSubmit = (event) => {
         event.preventDefault()
+        if (this.state.password === this.state.confirmation) {
         fetch("http://localhost:3001/api/v1/users", {
             method: "POST",
             headers: {
@@ -44,7 +45,10 @@ class LogInForm extends Component {
             .then(resp => resp.json())
             .then(user => {this.props.setCurrentUser(user)
                 this.setState(resetForm)
-                this.props.history.push('/bookstore')})       
+                this.props.history.push('/bookstore')}) 
+            } else {
+                alert('these passwords dont match! reader!')
+            }      
      }
 
      handleReturningUserSubmit = (event) => {

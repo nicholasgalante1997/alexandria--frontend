@@ -42,7 +42,7 @@ class Book extends Component {
     //  }
 
     addToLibrary = () => {
-        if (this.props.currentUser === {}) {
+        if (this.props.loggedIn === false) {
             alert("Must Be Logged In to Add A Book To Your Library")
         } else {
             fetch("http://localhost:3001/api/v1/user_books", {
@@ -78,10 +78,13 @@ class Book extends Component {
             <Col md={3} >
                 
                 <img src={this.props.image}/>
-                <div className="book">
+                <div className="book-backside">
                 <h3>{this.state.moreInfo.title}</h3>
                 <p>{this.state.moreInfo.authors}</p>           
                 <small>{this.state.moreInfo.desc}</small>
+                <ul>
+                    <li><a href={this.state.moreInfo.url}>Book Link</a></li>
+                </ul>
                 <br></br>
                 <button onClick={this.handleClick} name='info'>LessInfo</button>
                 <button onClick={this.addToLibrary} name="add-to-lib">Add To My Library</button>

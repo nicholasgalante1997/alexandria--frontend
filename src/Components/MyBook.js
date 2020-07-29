@@ -5,7 +5,13 @@ import Col from 'react-bootstrap/Col';
 class MyBook extends Component {
     state = { 
         backSide: false,
-        moreInfo: {}
+        moreInfo: {},
+        myUserBook: {},
+        favorite: false
+     }
+
+     componentDidMount(){
+         this.setMyUserBook()
      }
 
      handleClick = () => {
@@ -42,8 +48,37 @@ class MyBook extends Component {
           </Col>)
     }
 
-    addToFavorites = () => {
-        fetch(`http://localhost:3001/api/v1/user_books/`)
+    findMyBook = () => {
+      return [...this.props.currentUser.user_books].find(user_book => (user_book.isbn13 === this.props.isbn13))
+    }
+
+    setMyUserBook = () => {
+       const userbook = this.findMyBook()
+       this.setState({
+           myUserBook: userbook,
+           favorite: userbook.been_read
+       })
+    }
+
+    toggleFavorite = () => {
+        fetch(`http://localhost:3001/api/v1/user_books/${this.state.myUserBook.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                been_read: !this.state.myUserBook.been_read
+            })
+        })
+        .then(r => r.json())
+        .then(user_book => this.setState(prevState => {
+            return {
+                myUserBook: user_book,
+                favorite: !prevState.favorite
+            }
+        }));
+        
     }
 
     renderBack = () => {
@@ -61,7 +96,7 @@ class MyBook extends Component {
                 </ul>
                 <br></br>
                 <button onClick={this.handleClick} name='info'>LessInfo</button>
-                {/* <button onClick={this.addToLibrary} name="add-to-lib">Add To My Library</button> */}
+                { this.state.favorite ? <button onClick={this.toggleFavorite}>UnFavorite 💔</button> : <button onClick={this.toggleFavorite}>Favorite 💖</button> }
                 </div>
                 
             
@@ -71,7 +106,7 @@ class MyBook extends Component {
 
 
     render() { 
-        console.log(this.props)
+        console.log(this.props, this.state)
         return ( 
             (
                 (this.state.backSide 

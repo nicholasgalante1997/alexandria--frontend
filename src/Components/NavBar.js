@@ -17,7 +17,7 @@ const NavBar = (props) => {
                     <Nav>
                     <NavLink to='/bookstore'> <p className="nav-item">GetBooks</p></NavLink>
                     {  props.loggedIn ? <Nav> <p className="nav-item">Welcome {props.username}</p></Nav> : <NavLink to="/login"> <p className="nav-item">SignIn/SignUp</p></NavLink>}
-                    <NavLink to="/users/profilepage"><p className="nav-item">My Page</p></NavLink>
+                    { props.loggedIn ? <NavLink to="/users/profilepage"><p className="nav-item">My Page</p></NavLink> : null }
                     <NavLink to="/login"> <p onClick={props.logout} className="nav-item">Log Out</p></NavLink>
                     </Nav>
                     <SearchBar {...props}/>

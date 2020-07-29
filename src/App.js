@@ -89,12 +89,13 @@ class App extends Component {
         {/* <SearchBar /> */}
         <Switch>
           {/* <Route exact path='/books/isbn' render={(routerProps) => } */}
-          <Route path='/users/profilepage' render={(routerProps) => 
+          
+            <Route exact path='/bookstore' render={(routerProps) => 
+            <BookStoreContainer books={this.filterFunc()} {...routerProps} currentUser={this.state.currentUser} loggedIn={this.state.loggedIn}/>}/>
+            <Route path='/users/profilepage' render={(routerProps) => 
             <MyPageContainer currentUser={this.state.currentUser} loggedIn={this.state.loggedIn} {...routerProps} />}/>
-          <Route exact path='/bookstore' render={(routerProps) => 
-          <BookStoreContainer books={this.filterFunc()} {...routerProps} currentUser={this.state.currentUser} loggedIn={this.state.loggedIn}/>}/>
-          <Route exact path='/login' render={(routerProps) => 
-          <LogInForm {...routerProps} setCurrentUser={this.setCurrentUser} users={this.state.usersArray}/>}/>
+            <Route exact path='/login' render={(routerProps) => 
+            <LogInForm {...routerProps} setCurrentUser={this.setCurrentUser} users={this.state.usersArray}/>}/>
           
 
         </Switch> 

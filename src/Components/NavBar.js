@@ -5,8 +5,6 @@ import SearchBar from './SearchBar'
 import Container from 'react-bootstrap/Container'
 import NavLink from 'react-router-dom/NavLink'
 
-const clickHandlerForNullLink = () => alert('you must add a book to your library before entering your library page')
-
 const NavBar = (props) => {
     console.log(props)
     return (
@@ -21,12 +19,6 @@ const NavBar = (props) => {
                     <NavLink to="/login"> <p onClick={props.logout} className="nav-item">Log Out</p></NavLink>
                     </Nav>
                     {props.myPage === false && <SearchBar {...props}/>}
-                    
-                    
-                    {/* <div className="search-bar">
-                    <label>Search Books</label>
-                    <input onChange={props.handleChange} type='text' name='filter' value={props.filter}/>
-                    </div> */}
             </Navbar>
             </Container>
             

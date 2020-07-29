@@ -10,18 +10,14 @@ class Book extends Component {
         moreInfo: {}
     }
 
-    handleClick = () => {
-        
+    handleClick = () => { 
         if (this.state.backSide) {
-
             this.setState(prevState => {
                 return {
                     backSide: !prevState.backSide
                 }
             })
-
         } else { 
-
         fetch(`http://localhost:3001/api/v1/books/${this.props.isbn13}`)
         .then(r => r.json())
         .then(book => this.setState(prevState => 
@@ -51,12 +47,10 @@ class Book extends Component {
                     "Content-Type": "application/json",
                     "Accept": "application/json"
                 },
-                body: JSON.stringify({
-                   
+                body: JSON.stringify({  
                       user_id: this.props.currentUser.id,
                       been_read: false,
-                      isbn13: this.props.isbn13
-                    
+                      isbn13: this.props.isbn13 
                 })
             })
             .then(r => r.json())

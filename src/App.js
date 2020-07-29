@@ -40,9 +40,26 @@ class App extends Component {
      })
    }
 
+    onLogOut = () => {
+     this.setState({
+       currentUser: {},
+       loggedIn: false,
+       currentUserUserBooks: []
+     })
+    }
+    
+    // Intended for use with a feature of the application that has since been removed, maintained for possible different usage in expanding the functionality of the app
+    onDeleteUserBook = () => {
+      fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser.id}`)
+      .then(r => r.json())
+      .then(user => this.setState({
+        currentUserUserBooks: user.user_books
+      }))
+    }
    
-
-   addUserBookToBookAdded = () =>  {
+    //the name here is confusing but i do not want to change it everywhere 7 seconds before submit;
+    //the utility here changes the status of user_book_added, so that a new user's my page will not remain blocked from nav, also serves to set state's currentUserUserBooks for later passing
+    addUserBookToBookAdded = () =>  {
     fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser.id}`)
       .then(r => r.json())
       .then(user => this.setState({
@@ -51,22 +68,6 @@ class App extends Component {
      currentUserUserBooks: [user.user_books]
      })
     )}
-
-    onDeleteUserBook = () => {
-      fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser.id}`)
-      .then(r => r.json())
-      .then(user => this.setState({
-        currentUserUserBooks: user.user_books
-      }))
-    }
-
-   onLogOut = () => {
-     this.setState({
-       currentUser: {},
-       loggedIn: false,
-       currentUserUserBooks: []
-     })
-   }
 
    setCurrentUser = (user) => {
      this.setState({
@@ -81,13 +82,11 @@ class App extends Component {
      })
     }
 
-
     filterFunc = () => {
       let booksSearched = [...this.state.books]
       return booksSearched.filter((book) => book.title.toLowerCase().includes(this.state.filter.toLowerCase()))
     }
     
-
     fetchBooks = () => {
       fetch('http://localhost:3001/api/v1/books')
      .then(r => r.json())
@@ -112,7 +111,7 @@ class App extends Component {
         usersArray: users
       }))
     }
-
+    // the || [] is necessary to prevent a new users user page from firing an error for an undefined prop
     fetchUserBooksForCurrentUser = () => {
       console.log('in fetch for userbooks/currentuser', this.state.currentUser.id)
       fetch(`http://localhost:3001/api/v1/users/${this.state.currentUser.id}`)
@@ -123,18 +122,9 @@ class App extends Component {
     })
     }
 
-   componentDidMount(){
-     this.fetchBooks()
-     this.fetchUsers()
-   }
+   
 
-   componentDidUpdate(prevProps, prevState){
-     if (prevState.currentUser !== this.state.currentUser){
-     this.fetchUserBooksForCurrentUser()
-     this.libStatus()
-   }}
-
-   libStatus = () => {
+    libStatus = () => {
      if (this.state.currentUserUserBooks === undefined) {
        this.setState({
          user_book_added: false 
@@ -142,8 +132,18 @@ class App extends Component {
      } else {
        this.setState({user_book_added: true})
      }
-   }
+    }
 
+    componentDidMount(){
+     this.fetchBooks()
+     this.fetchUsers()
+    }
+
+   componentDidUpdate(prevProps, prevState){
+     if (prevState.currentUser !== this.state.currentUser){
+     this.fetchUserBooksForCurrentUser()
+     this.libStatus()
+    }}
 
   render() { 
     console.log(this.props)

@@ -44,13 +44,7 @@ class MyBook extends Component {
         
         }
     }
-    renderFront = () => {
-        return (<Col md={3}>
-              <img className='book' src={this.props.image} />
-              <p>{this.props.title}</p>
-              <button onClick={this.handleClick}name='info'>MoreInfo</button>
-          </Col>)
-    }
+    
 
     findMyBook = () => {
       return [...this.props.currentUserBooks].find(user_book => (user_book.isbn13 === this.props.isbn13))
@@ -87,23 +81,30 @@ class MyBook extends Component {
     });
         
     }
+    // method below became unnecessary as the intention is to keep track of books you have read and you can't unread a book, made more sense to utilize a toggle favorite instead
+    // removeFromLibrary = () => {
+    //     fetch(`http://localhost:3001/api/v1/user_books/${this.state.myUserBook.id}`, {
+    //         method: "DELETE",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //             "Accept": "application/json"
+    //         }
+    //     })
+    //     .then(r => r.json())
+    //     .then(empty => alert('item has been removed from your library'))
+    //     this.props.onDelete()
+    //     this.setState({
 
-    removeFromLibrary = () => {
-        fetch(`http://localhost:3001/api/v1/user_books/${this.state.myUserBook.id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
-        })
-        .then(r => r.json())
-        .then(empty => alert('item has been removed from your library'))
-        this.props.onDelete()
-        this.setState({
-
-        })
+    //     })
+    // }
+    renderFront = () => {
+        return (<Col md={3}>
+              <img className='book' src={this.props.image} />
+              <p>{this.props.title}</p>
+              <button onClick={this.handleClick}name='info'>MoreInfo</button>
+          </Col>)
     }
-
+    
     renderBack = () => {
         return (
             

@@ -55,35 +55,13 @@ class LogInForm extends Component {
         event.preventDefault()
         const user = [...this.props.users].find(user => (user.username === this.state.retUsername && user.password === this.state.retPassword))
         if (user === undefined) {
-            alert('incorrect login guy!')
+            alert('incorrect login sir/miss!')
         } else {
             this.props.setCurrentUser(user)
             this.setState(resetForm)
             this.props.history.push('/bookstore')
         }
      }
-
-    //  renderLogin = () => {
-    //     const { username, password } = this.state;
-    //     return (
-    //         <>
-    //             <input name="username" placeholder="Username" value={username} onChange={this.handleChange}/>
-    //             <input name="password" placeholder="Password" type="password" value={password} onChange={this.handleChange}/>
-    //         </>
-    //     )
-    // }
-
-
-    // renderSignup = () => {
-    //     const { username, password, name, confirmation } = this.state;
-    //     return (
-    //         <>
-    //             <input name="username" placeholder="Username" value={username} onChange={this.handleChange}/>
-    //             <input name="password" placeholder="Password" type="password" value={password} onChange={this.handleChange}/>
-    //             <input name="confirmation" placeholder="Confirm Password"  type="password" value={confirmation} onChange={this.handleChange}/>
-    //         </>
-    //     )
-    // }
 
      
     render() { 

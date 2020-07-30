@@ -36,6 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  background: linear-gradient(to right, #de6262, #ffb88c);
+}
 .book {
   width: 190px;
   padding: 25px;

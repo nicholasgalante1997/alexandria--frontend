@@ -25,7 +25,12 @@ class App extends Component {
     usersArray: [],
     user_book_added: false,
     currentUserUserBooks: [],
-    myPage: false
+    myPage: false,
+    ascending: false 
+   }
+
+   sortBooksFunction () {
+
    }
 
    onMyPageClick = () => {
@@ -83,9 +88,11 @@ class App extends Component {
     }
 
     filterFunc = () => {
-      let booksSearched = [...this.state.books]
+      let booksSearched = [...this.state.books].sort()
       return booksSearched.filter((book) => book.title.toLowerCase().includes(this.state.filter.toLowerCase()))
     }
+
+
     
     fetchBooks = () => {
       fetch('http://localhost:3001/api/v1/books')

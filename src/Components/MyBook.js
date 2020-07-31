@@ -7,7 +7,11 @@ class MyBook extends Component {
         backSide: false,
         moreInfo: {},
         myUserBook: {},
-        favorite: false
+        favorite: false,
+        commentBar: false,
+        comment: "",
+        commentToggle: false,
+        newCommentsToRender: [] 
      }
 
      componentDidMount(){
@@ -43,6 +47,12 @@ class MyBook extends Component {
         )
         
         }
+    }
+
+    handleInput = (event) => {
+        this.setState({
+            [event.target.name]: event.target.value
+        })
     }
     
 
@@ -97,15 +107,52 @@ class MyBook extends Component {
 
     //     })
     // }
+
+    toggleCommentBar = () => this.setState(prevState => {
+     return {
+        commentBar: !prevState.commentBar
+    }
+})
+
+    handleCommentSubmit = (event) => {
+        event.preventDefault() 
+        fetch('http://localhost:3001/api/v1/comments', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({
+                user_book_id: this.state.myUserBook.id,
+                text: this.state.comment 
+            })
+        })
+        .then(r => r.json())
+        .then(comment => this.setState(prevState => {
+          return  {
+            comment: "",
+            commentBar: false,
+            newCommentsToRender: [...prevState.newCommentsToRender, comment]
+        }
+    }))
+    }
+
     renderFront = () => {
+        console.log(this.props, this.state)
         return (<Col md={3}>
               <img className='book' src={this.props.image} />
               <p>{this.props.title}</p>
               <button onClick={this.handleClick}name='info'>MoreInfo</button>
           </Col>)
     }
+
+    filterForMyComment = () => {
+        let myComments = [...this.props.comments].filter(comment => comment.user_book_id === this.state.myUserBook.id )
+        return myComments
+    }
     
     renderBack = () => {
+        let comments = this.filterForMyComment()
         return (
             
             <Col md={3} >
@@ -118,10 +165,30 @@ class MyBook extends Component {
                 <ul>
                     <li><a href={this.state.moreInfo.url}>Book Link</a></li>
                 </ul>
+                <ul>
+                    <strong>Comments:</strong>
+                    {comments.map(comment => <li>{comment.text}</li>)}
+                    {this.state.newCommentsToRender.map(comment => <li>{comment.text}</li>)}
+                </ul>
                 <br></br>
                 <button onClick={this.handleClick} name='info'>LessInfo</button>
                 { this.state.favorite ? <button onClick={this.toggleFavorite}>UnFavorite 💔</button> : <button onClick={this.toggleFavorite}>Favorite 💖</button> }
                 {/* <button onClick={this.removeFromLibrary}>Remove me from library :(</button> */}
+                <br></br>
+                
+                { this.state.commentBar
+                ? 
+                <>
+                <button onClick={this.toggleCommentBar}>Remove Comment Bar</button> 
+                <form name='comment' onSubmit={this.handleCommentSubmit} >
+                <label>Comment</label>
+                <input onChange={this.handleInput} type='text' name='comment' value={this.state.comment}/> 
+                <button type='submit'>Submit</button>
+                </form>
+                </>
+                : 
+                <button onClick={this.toggleCommentBar}>Add a Comment</button> }
+                
                 </div>
                 
             
@@ -132,6 +199,7 @@ class MyBook extends Component {
 
     render() { 
         console.log(this.props, this.state)
+        console.log(this.filterForMyComment())
         return ( 
             (
                 (this.state.backSide 

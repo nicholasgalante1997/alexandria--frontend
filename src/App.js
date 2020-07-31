@@ -29,10 +29,6 @@ class App extends Component {
     ascending: false 
    }
 
-   sortBooksFunction () {
-
-   }
-
    onMyPageClick = () => {
      this.setState({
        myPage: true 
@@ -92,8 +88,6 @@ class App extends Component {
       return booksSearched.filter((book) => book.title.toLowerCase().includes(this.state.filter.toLowerCase()))
     }
 
-
-    
     fetchBooks = () => {
       fetch('http://localhost:3001/api/v1/books')
      .then(r => r.json())

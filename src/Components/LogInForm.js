@@ -76,25 +76,25 @@ class LogInForm extends Component {
                 <Row>
                     <Col md={6}>
                         <Card>
-                            <Card.Title>Sign Up Nerd!</Card.Title>
+                            <Card.Title className='log-in-card'>Sign Up Nerd!</Card.Title>
                             <Card.Body>
                                 <form className='new-form' onSubmit={this.handleNewUserSubmit}>
                                 <input name="username" placeholder="Username" value={this.state.username} onChange={this.handleChange}/>
                                 <input name="password" placeholder="Password" type="password" value={this.state.password} onChange={this.handleChange}/>
                                 <input name="confirmation" placeholder="Confirm Password"  type="password" value={this.state.confirmation} onChange={this.handleChange}/>
-                                <button type="submit">Submit</button>
+                                <button type="submit" className='myButton'>Submit</button>
                                 </form>
                             </Card.Body>
                         </Card>
                     </Col>
                     <Col md={6}>
                         <Card>
-                            <Card.Title>Returning Reader? Log In!</Card.Title>
+                            <Card.Title className='log-in-card'>Returning Reader? Log In!</Card.Title>
                             <Card.Body>
                             <form className='return-form' onSubmit={this.handleReturningUserSubmit}>
                             <input name="retUsername" placeholder="Username" value={this.state.retUsername} onChange={this.handleChange}/>
                             <input name="retPassword" placeholder="Password" type="password" value={this.state.retPassword} onChange={this.handleChange}/>
-                            <button type="submit">Submit</button>
+                            <button type="submit" className='myButton'>Submit</button>
                             </form>
                             </Card.Body>
                         </Card>

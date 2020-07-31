@@ -39,6 +39,7 @@
 
 body {
   background: linear-gradient(to right, #de6262, #ffb88c);
+  font-family: American Typewriter, serif;
 }
 .book {
   width: 190px;
@@ -50,7 +51,7 @@ body {
 
 .bookshelf {
   background: linear-gradient(to right, #de6262, #ffb88c);
-  font-family: Courier, monospace;
+  font-family: American Typewriter, serif;;
   font-style: italic;
   color: white;
 }
@@ -63,7 +64,7 @@ body {
 
 .search-bar {
   color: white;
-  font-family: Courier, monospace;
+  font-family: American Typewriter, serif;
   font-style: italic;
   padding-left: 100px;
   
@@ -73,7 +74,7 @@ body {
 .nav-item {
   padding: 25px;
   color: white; 
-  font-family: Courier, monospace;
+  font-family: American Typewriter, serif;
   font-style: italic;
   align-content: space-between;
 }
@@ -87,7 +88,7 @@ body {
 .footer {
   background-image: url(https://www.toptal.com/designers/subtlepatterns/patterns/double-bubble-dark.png);
   color: white;
-  font-family: Courier, monospace;
+  font-family: American Typewriter, serif;
   font-style: italic;
   font-size: smaller;
   height: 20px
@@ -111,4 +112,37 @@ body {
   width: 50px;
   float: bottom;
   border-radius: 10px;
+}
+
+.myButton {
+	box-shadow: 3px 4px 0px 0px #899599;
+	background:linear-gradient(to bottom, #ededed 5%, #bab1ba 100%);
+	background-color:#ededed;
+	border-radius:15px;
+	border:1px solid #d6bcd6;
+	display:inline-block;
+	cursor:pointer;
+  color:#3a8a9e;
+  font-family: American Typewriter, serif;
+	padding:7px 25px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #e1e2ed;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #bab1ba 5%, #ededed 100%);
+	background-color:#bab1ba;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
+.log-in-card {
+  font-family: American Typewriter, serif;
+}
+
+.little {
+  font-family: American Typewriter, serif;
+  color: white;
+  font-size: 10px;
 }

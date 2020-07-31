@@ -64,7 +64,7 @@ class Book extends Component {
       return (<Col md={3}>
             <img className='book' src={this.props.image} />
             <p>{this.props.title}</p>
-            <button onClick={this.handleClick}name='info'>MoreInfo</button>
+            <button onClick={this.handleClick}name='info' className='myButton'>MoreInfo</button>
         </Col>)
     }
 
@@ -82,8 +82,8 @@ class Book extends Component {
                     <li><a href={this.state.moreInfo.url}>Book Link</a></li>
                 </ul>
                 <br></br>
-                <button onClick={this.handleClick} name='info'>LessInfo</button>
-                <button onClick={this.addToLibrary} name="add-to-lib">Add To My Library</button>
+                <button onClick={this.handleClick} name='info' className='myButton'>LessInfo</button>
+                <button onClick={this.addToLibrary} name="add-to-lib" className='myButton'>Add To My Library</button>
                 </div>
                 
             

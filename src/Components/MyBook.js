@@ -142,7 +142,7 @@ class MyBook extends Component {
         return (<Col md={3}>
               <img className='book' src={this.props.image} />
               <p>{this.props.title}</p>
-              <button onClick={this.handleClick}name='info'>MoreInfo</button>
+              <button onClick={this.handleClick}name='info' className='myButton'>MoreInfo</button>
           </Col>)
     }
 
@@ -171,23 +171,23 @@ class MyBook extends Component {
                     {this.state.newCommentsToRender.map(comment => <li>{comment.text}</li>)}
                 </ul>
                 <br></br>
-                <button onClick={this.handleClick} name='info'>LessInfo</button>
-                { this.state.favorite ? <button onClick={this.toggleFavorite}>UnFavorite 💔</button> : <button onClick={this.toggleFavorite}>Favorite 💖</button> }
+                <button onClick={this.handleClick} name='info' className='myButton'>LessInfo</button>
+                { this.state.favorite ? <button onClick={this.toggleFavorite} className='myButton'>UnFavorite 💔</button> : <button onClick={this.toggleFavorite} className='myButton'>Favorite 💖</button> }
                 {/* <button onClick={this.removeFromLibrary}>Remove me from library :(</button> */}
                 <br></br>
                 
                 { this.state.commentBar
                 ? 
                 <>
-                <button onClick={this.toggleCommentBar}>Remove Comment Bar</button> 
+                <button onClick={this.toggleCommentBar} className='myButton'>Remove Comment Bar</button> 
                 <form name='comment' onSubmit={this.handleCommentSubmit} >
                 <label>Comment</label>
                 <input onChange={this.handleInput} type='text' name='comment' value={this.state.comment}/> 
-                <button type='submit'>Submit</button>
+                <button type='submit' className='myButton'>Submit</button>
                 </form>
                 </>
                 : 
-                <button onClick={this.toggleCommentBar}>Add a Comment</button> }
+                <button onClick={this.toggleCommentBar} className='myButton'>Add a Comment</button> }
                 
                 </div>
                 

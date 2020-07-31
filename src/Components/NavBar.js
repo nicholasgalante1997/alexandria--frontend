@@ -11,8 +11,11 @@ const NavBar = (props) => {
         <div className="nav-bar">
             <Container fluid>
                 <Navbar>
-                <Navbar.Brand><h2 className="nav-item">Alexandria</h2></Navbar.Brand>
+                    <Navbar.Brand>
+                    <h2 className="nav-item">Alexandria</h2>
+                    </Navbar.Brand>
                     <Nav>
+                        <Nav.Link><img src='https://static.vecteezy.com/system/resources/previews/000/268/526/original/bookworm-vector.png' className='nav-image'/></Nav.Link>
                     <NavLink to='/bookstore' onClick={props.onBookStoreClick}><p className="nav-item">GetBooks</p></NavLink>
                     {  props.loggedIn ? <Nav> <p className="nav-item">Welcome {props.username}</p></Nav> : <NavLink to="/login"> <p className="nav-item">SignIn/SignUp</p></NavLink>}
                     { props.bookAdded && props.loggedIn ? <NavLink to="/users/profilepage" onClick={props.onMyPageClick}><p className="nav-item">My Page</p></NavLink> : null }

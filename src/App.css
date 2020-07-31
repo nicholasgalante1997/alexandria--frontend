@@ -105,3 +105,10 @@ body {
   font-weight: 700;
   border-color:whitesmoke ;
 }
+
+.nav-image {
+  height: 50px;
+  width: 50px;
+  float: bottom;
+  border-radius: 10px;
+}
